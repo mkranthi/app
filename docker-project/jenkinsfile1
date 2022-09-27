@@ -2,7 +2,7 @@ pipeline {
   agent any
   parameters {
     choice(name: 'select_environment', choices: ['dev', 'test', 'prod','dev1'], description: 'Choose one')
-    gitParameter branchFilter: 'origin/(.*)', defaultValue: 'main', name: 'BRANCH', type: 'PT_BRANCH', useRepository: '.*Application.git'
+    gitParameter branchFilter: 'origin/(.*)', defaultValue: 'main', name: 'BRANCH', type: 'PT_BRANCH', useRepository: '.*app.git'
    /// environment {
       //develop= 'develop'
       //test='test'
