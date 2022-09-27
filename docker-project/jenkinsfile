@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage ('checkout') {  
                 steps {
-                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mkranthi/app.git']]])
+                 checkout([$class: 'GitSCM', branches: [[name: '*/feature-init']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mkranthi/app.git']]])
                  }  
             }
         stage('docker image build'){
