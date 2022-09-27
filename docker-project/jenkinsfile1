@@ -27,6 +27,15 @@ pipeline {
                     config=$(jq '.dev1.ip' config.json | sed 's/"//g')
                     echo $config
                     ssh -i /tmp/id_rsa ec2-user@$config -o StrictHostKeyChecking=no << EOF
+                    sudo yum install -y yum-utils
+                    sudo yum-config-manager \
+                    --add-repo \
+                    https://download.docker.com/linux/centos/docker-ce.repo
+                    sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+                    sudo usermod -aG docker $(whoami)
+                    sudo  systemctl restart sshd
+                    sudo chmod 666 /var/run/docker.sock
+                    sudo systemctl start docker
                     touch samplefile
                     exit 0
                     << EOF
