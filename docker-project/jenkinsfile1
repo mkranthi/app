@@ -32,7 +32,7 @@ pipeline {
                     --add-repo \
                     https://download.docker.com/linux/centos/docker-ce.repo
                     sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-                    sudo usermod -aG docker $(whoami)
+                    sudo usermod -aG docker ec2-user
                     sudo  systemctl restart sshd
                     sudo chmod 666 /var/run/docker.sock
                     sudo systemctl start docker
@@ -58,7 +58,7 @@ pipeline {
                     --add-repo \
                     https://download.docker.com/linux/centos/docker-ce.repo
                     sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-                    sudo usermod -aG docker $(whoami)
+                    sudo usermod -aG docker ec2-user
                     sudo  systemctl restart sshd
                     sudo chmod 666 /var/run/docker.sock
                     sudo systemctl start docker
@@ -84,7 +84,7 @@ pipeline {
                     --add-repo \
                     https://download.docker.com/linux/centos/docker-ce.repo
                     sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-                    sudo usermod -aG docker $(whoami)
+                    sudo usermod -aG docker ec2-user
                     sudo  systemctl restart sshd
                     sudo chmod 666 /var/run/docker.sock
                     sudo systemctl start docker
@@ -110,7 +110,7 @@ pipeline {
                     --add-repo \
                     https://download.docker.com/linux/centos/docker-ce.repo
                     sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-                    sudo usermod -aG docker $(whoami)
+                    sudo usermod -aG docker ec2-user
                     sudo  systemctl restart sshd
                     sudo chmod 666 /var/run/docker.sock
                     sudo systemctl start docker
