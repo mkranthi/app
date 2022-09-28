@@ -24,7 +24,7 @@ pipeline {
                 script {
                     sh '''
                     #!/bin/bash
-                    config=$(jq '.dev1.ip' config.json | sed 's/"//g')
+                    config=$(jq '.dev1.ip' docker-project/config.json | sed 's/"//g')
                     echo $config
                     ssh -i /tmp/id_rsa ec2-user@$config -o StrictHostKeyChecking=no << EOF
                     sudo yum install -y yum-utils
@@ -76,7 +76,7 @@ pipeline {
                 script {
                     sh '''
                     #!/bin/bash
-                    config=$(jq '.test.ip' config.json | sed 's/"//g')
+                    config=$(jq '.test.ip' docker-project/config.json | sed 's/"//g')
                     echo $config
                     ssh -i /tmp/id_rsa ec2-user@$config -o StrictHostKeyChecking=no << EOF
                     sudo yum install -y yum-utils
@@ -102,7 +102,7 @@ pipeline {
                 script {
                     sh '''
                     #!/bin/bash
-                    config=$(jq '.prod.ip' config.json | sed 's/"//g')
+                    config=$(jq '.prod.ip' docker-project/config.json | sed 's/"//g')
                     echo $config
                     ssh -i /tmp/id_rsa ec2-user@$config -o StrictHostKeyChecking=no << EOF
                     sudo yum install -y yum-utils
