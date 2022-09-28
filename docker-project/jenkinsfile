@@ -9,7 +9,11 @@ pipeline{
             }
         stage('docker image build'){
             steps{
+<<<<<<< HEAD
                 sh "docker build -t new_image ."
+=======
+                sh "docker build -t new_image docker-project/."
+>>>>>>> c38c3c97187f030718abf47bd7ea05d72e5e1fb9
             }
         }
         stage('docker tag'){
