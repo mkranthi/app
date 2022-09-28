@@ -50,7 +50,7 @@ pipeline {
                 script {
                     sh '''
                     #!/bin/bash
-                    config=$(jq '.dev.ip' config.json | sed 's/"//g')
+                    config=$(jq '.dev.ip' docker-project/config.json | sed 's/"//g')
                     echo $config
                     ssh -i /tmp/id_rsa ec2-user@$config -o StrictHostKeyChecking=no << EOF
 		    sudo yum install -y yum-utils
