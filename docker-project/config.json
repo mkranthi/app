@@ -6,7 +6,7 @@
         },
         "test":{
                 "name": "testenv",
-                "ip":"172.31.17.203",
+                "ip":"172.31.24.46",
                 "fruit": "banana"
         },
         "prod":{
