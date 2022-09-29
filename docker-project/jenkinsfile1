@@ -122,15 +122,10 @@ pipeline {
                     exit 0
                     << EOF
                     '''
+		    sh ' scp -i /tmp/id_rsa -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/docker-project/deploy-app ec2-user@$config:. '
+
                 }
-		steps {
-		sh '''
-		#!/bin/bash
-                config=$(jq '.prod.ip' docker-project/config.json | sed 's/"//g')
-               scp -i /tmp/id_rsa -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/docker-project/deploy-app ec2-user@$config:.
-	       '''
-        
-             }
+		
             }
             else {
                         sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
