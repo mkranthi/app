@@ -118,7 +118,6 @@ pipeline {
                     docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
                     docker pull itsolidev.jfrog.io/itsol-docker-dev-local/new_image
                     docker images
-                    docker compose up .
                     exit 0
                     << EOF
                     '''
