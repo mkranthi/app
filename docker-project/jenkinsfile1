@@ -125,6 +125,11 @@ pipeline {
 		    #!/bin/bash
                     config=$(jq '.prod.ip' docker-project/config.json | sed 's/"//g')
 		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/docker-project/deploy-app ec2-user@$config:.
+		    '''
+		    sh '''
+		    #!/bin/bash
+                    config=$(jq '.prod.ip' docker-project/config.json | sed 's/"//g')
+		    cd /home/ec2-user/deploy-app/docker-project 
 		    docker compose up .
 		    '''
 
