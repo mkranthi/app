@@ -117,13 +117,15 @@ pipeline {
                     sudo chmod 666 /var/run/docker.sock
                     docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
                     docker pull itsolidev.jfrog.io/itsol-docker-dev-local/new_image
-		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/docker-project/deploy-app ec2-user@$config:.
                     docker images
                     docker compose up .
                     exit 0
                     << EOF
                     '''
                 }
+		{
+		scp -i /tmp/id_rsa -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/docker-project/deploy-app ec2-user@$config:.
+		}
             }
             else {
                         sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
