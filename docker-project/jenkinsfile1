@@ -118,19 +118,20 @@ pipeline {
                     docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
                     docker pull itsolidev.jfrog.io/itsol-docker-dev-local/new_image
                     docker images
+		    mkdir docker-container1
                     exit 0
                     << EOF
                     '''
 		    sh '''
 		    #!/bin/bash
                     config=$(jq '.prod.ip' docker-project/config.json | sed 's/"//g')
-		    scp -i /tmp/id_rs/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/docker-project/deploy-app ec2-user@$config:/home/ec2-user/docker-container
+		    scp -i /tmp/id_rs/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/docker-project/deploy-app ec2-user@$config:/home/ec2-user/docker-container1
 		    '''
 		    sh '''
 		    #!/bin/bash
                     config=$(jq '.prod.ip' docker-project/config.json | sed 's/"//g')
 		    ssh -i /tmp/id_rsa ec2-user@$config -o StrictHostKeyChecking=no << EOF
-		    cd /home/ec2-user/docker-container/deploy-app/docker-project 
+		    cd /home/ec2-user/docker-container1/deploy-app/docker-project 
 		    docker compose up -d
 		    exit 0
                     << EOF
