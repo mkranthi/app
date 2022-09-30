@@ -132,6 +132,8 @@ pipeline {
 		    ssh -i /tmp/id_rsa ec2-user@$config -o StrictHostKeyChecking=no << EOF
 		    cd /home/ec2-user/deploy-app/docker-project 
 		    docker compose up 
+		    exit 0
+                    << EOF
 		    '''
 
                 }
