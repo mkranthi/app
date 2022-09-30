@@ -131,7 +131,7 @@ pipeline {
                     config=$(jq '.prod.ip' docker-project/config.json | sed 's/"//g')
 		    ssh -i /tmp/id_rsa ec2-user@$config -o StrictHostKeyChecking=no << EOF
 		    cd /home/ec2-user/docker-container/deploy-app/docker-project 
-		    docker compose up 
+		    docker compose up -d
 		    exit 0
                     << EOF
 		    '''
