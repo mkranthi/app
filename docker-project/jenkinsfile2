@@ -45,12 +45,12 @@ pipeline {
                     '''
                     sh '''
 		    #!/bin/bash
-                    config=$(jq '.prod.ip' docker-project/config.json | sed 's/"//g')
+                    config=$(jq '.dev1.ip' docker-project/config.json | sed 's/"//g')
 		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/docker-project/deploy-app/docker-project ec2-user@$config:/home/ec2-user/docker-container1
 		    '''
 		    sh '''
 		    #!/bin/bash
-                    config=$(jq '.prod.ip' docker-project/config.json | sed 's/"//g')
+                    config=$(jq '.dev1.ip' docker-project/config.json | sed 's/"//g')
 		    ssh -i /tmp/id_rsa ec2-user@$config -o StrictHostKeyChecking=no << EOF
 		    cd /home/ec2-user/docker-container1/deploy-app/docker-project 
 		    docker compose up -d
@@ -101,7 +101,7 @@ pipeline {
                 }
             }
             if (env.select_environment == 'test'){
-                echo ' hello from dev'
+                echo ' hello from test'
                 script {
                     sh '''
                     #!/bin/bash
@@ -141,7 +141,7 @@ pipeline {
                 }
             }
             if (env.select_environment == 'prod'){
-                echo ' hello from dev'
+                echo ' hello from prod'
                 script {
                     sh '''
                     #!/bin/bash
