@@ -78,7 +78,7 @@ pipeline {
                     sudo chmod 666 /var/run/docker.sock
                     touch dev1.ip
                     docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
-                    docker pull itsolidev.jfrog.io/itsol-docker-dev-local/new_image
+                    docker pull itsolidev.jfrog.io/itsol-docker-develop-local/docker_image
                     docker images
 		    docker compose up .
                     exit 0
@@ -118,7 +118,7 @@ pipeline {
 		    sudo systemctl start docker
                     sudo chmod 666 /var/run/docker.sock
                     docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
-                    docker pull itsolidev.jfrog.io/itsol-docker-dev-local/new_image
+                    docker pull itsolidev.jfrog.io/itsol-docker-develop-local/docker_image
                     docker images
                     docker compose up .
                     exit 0
@@ -158,7 +158,7 @@ pipeline {
 		    sudo systemctl start docker
                     sudo chmod 666 /var/run/docker.sock
                     docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
-                    docker pull itsolidev.jfrog.io/itsol-docker-dev-local/new_image
+                    docker pull itsolidev.jfrog.io/itsol-docker-develop-local/docker_image
                     docker images
 		    mkdir docker-container1
                     exit 0
