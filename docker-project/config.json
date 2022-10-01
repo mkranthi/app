@@ -11,13 +11,14 @@
         },
         "prod":{
                 "name": "prodenv",
-                "ip":"172.31.30.161",
+                "ip":"172.31.16.43",
                 "fruit": "mango"
         },
         "dev1":{
                 "name": "dev1env",
                 "ip":"172.31.18.217",
                 "fruit": "grapes"
-        }
+        },
+        
         
 }
