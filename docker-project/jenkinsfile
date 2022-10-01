@@ -1,0 +1,32 @@
+
+pipeline{
+    agent any
+    stages{
+        stage ('checkout') {  
+                steps {
+                 checkout([$class: 'GitSCM', branches: [[name: '*/feature-init']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mkranthi/app.git']]])
+                 }  
+            }
+        stage('docker image build'){
+            steps{
+                sh "docker build -t docker_image docker-project/."
+            }
+        }
+        stage('docker tag'){
+            steps{
+                sh "docker tag docker_image itsolidev.jfrog.io/itsol-docker-develop-local/docker_image"
+            }
+        }
+        stage('login into jfrog artifactory'){
+            steps{
+                sh "docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1"
+            }
+        }
+        stage('push into jfrog artifactory'){
+            steps{
+                sh "docker push itsolidev.jfrog.io/itsol-docker-develop-local/docker_image"
+            }
+        }
+        
+    }
+}
