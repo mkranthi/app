@@ -24,7 +24,7 @@ pipeline{
         }
         stage('push into jfrog artifactory'){
             steps{
-                sh "docker push itsolidev.jfrog.io/artifactory/itsol-docker-develop-local/docker_image"
+                sh "docker push itsol-docker-develop-local/docker_image"
             }
         }
         
