@@ -14,7 +14,7 @@ pipeline{
         }
         stage('docker tag'){
             steps{
-                sh "docker tag second_image itsolidev.jfrog.io/itsol-docker-dev-local/new_image"
+                sh "docker tag docker_image itsolidev.jfrog.io/artifactory/itsol-docker-develop-local/docker_image"
             }
         }
         stage('login into jfrog artifactory'){
@@ -24,7 +24,7 @@ pipeline{
         }
         stage('push into jfrog artifactory'){
             steps{
-                sh "docker push itsolidev.jfrog.io/itsol-docker-dev-local/new_image"
+                sh "docker push itsolidev.jfrog.io/artifactory/itsol-docker-develop-local/docker_image"
             }
         }
         
