@@ -6,12 +6,12 @@
         },
         "test":{
                 "name": "testenv",
-                "ip":"172.31.24.46",
+                "ip":"172.31.30.161",
                 "fruit": "banana"
         },
         "prod":{
                 "name": "prodenv",
-                "ip":"172.31.16.43",
+                "ip":"172.31.45.227",
                 "fruit": "mango"
         },
         "dev1":{
