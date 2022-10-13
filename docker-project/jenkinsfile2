@@ -33,13 +33,12 @@ pipeline {
                     https://download.docker.com/linux/centos/docker-ce.repo
                     sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
                     sudo usermod -aG docker ec2-user
-                    sudo  systemctl restart sshd
+                    sudo chown ec2-user /var/run/docker.sock
+		    sudo chmod 666 /var/run/docker.sock
 		    sudo systemctl start docker
-                    sudo chmod 666 /var/run/docker.sock
                     docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
                     docker pull itsolidev.jfrog.io/itsol-docker-develop-local/docker_image
                     docker images
-                    docker compose up .
                     exit 0
                     << EOF
                     '''
@@ -73,14 +72,12 @@ pipeline {
                     https://download.docker.com/linux/centos/docker-ce.repo
                     sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
                     sudo usermod -aG docker ec2-user
-                    sudo  systemctl restart sshd
-		    sudo systemctl start docker
+		    sudo chown ec2-user /var/run/docker.sock
                     sudo chmod 666 /var/run/docker.sock
-                    touch dev1.ip
+		    sudo systemctl start docker
                     docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
                     docker pull itsolidev.jfrog.io/itsol-docker-develop-local/docker_image
                     docker images
-		    docker compose up .
                     exit 0
                     << EOF
                     '''
@@ -114,13 +111,12 @@ pipeline {
                     https://download.docker.com/linux/centos/docker-ce.repo
                     sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
                     sudo usermod -aG docker ec2-user
-                    sudo  systemctl restart sshd
-		    sudo systemctl start docker
+		    sudo chown ec2-user /var/run/docker.sock
                     sudo chmod 666 /var/run/docker.sock
+		    sudo systemctl start docker
                     docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
                     docker pull itsolidev.jfrog.io/itsol-docker-develop-local/docker_image
                     docker images
-                    docker compose up .
                     exit 0
                     << EOF
                     '''
@@ -154,13 +150,12 @@ pipeline {
                     https://download.docker.com/linux/centos/docker-ce.repo
                     sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
                     sudo usermod -aG docker ec2-user
-                    sudo  systemctl restart sshd
-		    sudo systemctl start docker
+                    sudo chown ec2-user /var/run/docker.sock
                     sudo chmod 666 /var/run/docker.sock
-                    docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
+		    sudo systemctl start docker
+		    docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
                     docker pull itsolidev.jfrog.io/itsol-docker-develop-local/docker_image
                     docker images
-		    mkdir docker-container1
                     exit 0
                     << EOF
                     '''
