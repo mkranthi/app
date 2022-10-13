@@ -3,11 +3,6 @@ pipeline {
   parameters {
     choice(name: 'select_environment', choices: ['dev', 'test', 'prod','dev1'], description: 'Choose one')
     gitParameter branchFilter: 'origin/(.*)', defaultValue: 'main', name: 'BRANCH', type: 'PT_BRANCH', useRepository: '.*app.git'
-   /// environment {
-      //develop= 'develop'
-      //test='test'
-      //prod='prod'
-     //}
   }
   stages {
     stage('Example') {
@@ -51,7 +46,7 @@ pipeline {
 		    #!/bin/bash
                     config=$(jq '.dev.ip' docker-project/config.json | sed 's/"//g')
 		    ssh -i /tmp/id_rsa ec2-user@$config -o StrictHostKeyChecking=no << EOF
-		    cd /home/ec2-user/docker-container1 
+		    cd /home/ec2-user/docker-container1/docker-project
 		    docker compose up -d
 		    exit 0
                     << EOF
@@ -183,4 +178,3 @@ pipeline {
     }
   }
 }
-
