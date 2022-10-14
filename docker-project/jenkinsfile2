@@ -28,9 +28,9 @@ pipeline {
                     https://download.docker.com/linux/centos/docker-ce.repo
                     sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
                     sudo usermod -aG docker ec2-user
-                    sudo chown ec2-user /var/run/docker.sock
+                    sudo systemctl start docker
 		    sudo chmod 666 /var/run/docker.sock
-		    sudo systemctl start docker
+		    sudo chown ec2-user /var/run/docker.sock
                     docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
                     docker pull itsolidev.jfrog.io/itsol-docker-develop-local/docker_image
                     docker images
@@ -40,7 +40,7 @@ pipeline {
                     sh '''
 		    #!/bin/bash
                     config=$(jq '.dev.ip' docker-project/config.json | sed 's/"//g')
-		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/docker-project/deploy-app/docker-project ec2-user@$config:/home/ec2-user/docker-container1
+		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/docker-project/deploy-app/docker-project ec2-user@$config:/home/ec2-user/docker-container1/docker-project
 		    '''
 		    sh '''
 		    #!/bin/bash
@@ -54,7 +54,7 @@ pipeline {
                 }
             }                      
             if (env.select_environment == 'dev1'){
-                echo ' hello from dev'
+                echo ' hello from dev1'
                 script {
                     sh '''
                     #!/bin/bash
@@ -79,13 +79,13 @@ pipeline {
                     sh '''
 		    #!/bin/bash
                     config=$(jq '.dev1.ip' docker-project/config.json | sed 's/"//g')
-		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/docker-project/deploy-app/docker-project ec2-user@$config:/home/ec2-user/docker-container1
+		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/docker-project/deploy-app/docker-project ec2-user@$config:/home/ec2-user/docker-container1/docker-project
 		    '''
 		    sh '''
 		    #!/bin/bash
                     config=$(jq '.dev1.ip' docker-project/config.json | sed 's/"//g')
 		    ssh -i /tmp/id_rsa ec2-user@$config -o StrictHostKeyChecking=no << EOF
-		    cd /home/ec2-user/docker-container1 
+		    cd /home/ec2-user/docker-container1/docker-project 
 		    docker compose up -d
 		    exit 0
                     << EOF
@@ -106,9 +106,9 @@ pipeline {
                     https://download.docker.com/linux/centos/docker-ce.repo
                     sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
                     sudo usermod -aG docker ec2-user
+		    sudo systemctl start docker
 		    sudo chown ec2-user /var/run/docker.sock
                     sudo chmod 666 /var/run/docker.sock
-		    sudo systemctl start docker
                     docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
                     docker pull itsolidev.jfrog.io/itsol-docker-develop-local/docker_image
                     docker images
@@ -118,13 +118,13 @@ pipeline {
                     sh '''
 		    #!/bin/bash
                     config=$(jq '.test.ip' docker-project/config.json | sed 's/"//g')
-		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/docker-project/deploy-app/docker-project ec2-user@$config:/home/ec2-user/docker-container1
+		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/docker-project/deploy-app/docker-project ec2-user@$config:/home/ec2-user/docker-container1/docker-project
 		    '''
 		    sh '''
 		    #!/bin/bash
                     config=$(jq '.test.ip' docker-project/config.json | sed 's/"//g')
 		    ssh -i /tmp/id_rsa ec2-user@$config -o StrictHostKeyChecking=no << EOF
-		    cd /home/ec2-user/docker-container1 
+		    cd /home/ec2-user/docker-container1//docker-project 
 		    docker compose up -d
 		    exit 0
                     << EOF
@@ -145,9 +145,9 @@ pipeline {
                     https://download.docker.com/linux/centos/docker-ce.repo
                     sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
                     sudo usermod -aG docker ec2-user
+		    sudo systemctl start docker
                     sudo chown ec2-user /var/run/docker.sock
                     sudo chmod 666 /var/run/docker.sock
-		    sudo systemctl start docker
 		    docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
                     docker pull itsolidev.jfrog.io/itsol-docker-develop-local/docker_image
                     docker images
@@ -157,13 +157,13 @@ pipeline {
 		    sh '''
 		    #!/bin/bash
                     config=$(jq '.prod.ip' docker-project/config.json | sed 's/"//g')
-		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/docker-project/deploy-app/docker-project ec2-user@$config:/home/ec2-user/docker-container1
+		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/docker-project/deploy-app/docker-project ec2-user@$config:/home/ec2-user/docker-container1/docker-project
 		    '''
 		    sh '''
 		    #!/bin/bash
                     config=$(jq '.prod.ip' docker-project/config.json | sed 's/"//g')
 		    ssh -i /tmp/id_rsa ec2-user@$config -o StrictHostKeyChecking=no << EOF
-		    cd /home/ec2-user/docker-container1 
+		    cd /home/ec2-user/docker-container1/docker-project 
 		    docker compose up -d
 		    exit 0
                     << EOF
