@@ -79,13 +79,13 @@ pipeline {
                     sh '''
 		    #!/bin/bash
                     config=$(jq '.dev1.ip' docker-project/config.json | sed 's/"//g')
-		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/docker-project/deploy-app/docker-project ec2-user@$config:/home/ec2-user/docker-container1/docker-project
+		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/docker-project/deploy-app/docker-project ec2-user@$config:/home/ec2-user/docker-container1
 		    '''
 		    sh '''
 		    #!/bin/bash
                     config=$(jq '.dev1.ip' docker-project/config.json | sed 's/"//g')
 		    ssh -i /tmp/id_rsa ec2-user@$config -o StrictHostKeyChecking=no << EOF
-		    cd /home/ec2-user/docker-container1/docker-project 
+		    cd /home/ec2-user/docker-container1
 		    docker compose up -d
 		    exit 0
                     << EOF
