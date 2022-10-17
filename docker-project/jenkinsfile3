@@ -39,7 +39,6 @@ pipeline {
                     docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
                     docker pull itsolidev.jfrog.io/itsol-docker-develop-local/docker_image
                     docker images
-                    docker compose up .
                     exit 0
                     << EOF
                     '''
@@ -80,7 +79,6 @@ pipeline {
                     docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
                     docker pull itsolidev.jfrog.io/itsol-docker-develop-local/docker_image
                     docker images
-		    docker compose up .
                     exit 0
                     << EOF
                     '''
@@ -120,7 +118,6 @@ pipeline {
                     docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
                     docker pull itsolidev.jfrog.io/itsol-docker-develop-local/docker_image
                     docker images
-                    docker compose up .
                     exit 0
                     << EOF
                     '''
@@ -160,7 +157,6 @@ pipeline {
                     docker login https://itsolidev.jfrog.io/ -u kranthi.m -p Devops@1
                     docker pull itsolidev.jfrog.io/itsol-docker-develop-local/docker_image
                     docker images
-		    mkdir docker-container1
                     exit 0
                     << EOF
                     '''
