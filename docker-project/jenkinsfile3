@@ -163,13 +163,13 @@ pipeline {
 		    sh '''
 		    #!/bin/bash
                     config=$(jq '.prod.ip' docker-project/config.json | sed 's/"//g')
-		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/poc-pipleine/jenkins-file-testing ec2-user@$config:/home/ec2-user
+		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/poc-pipleine/jenkins-file-testing ec2-user@$config:/home/ec2-user/
 		    '''
 		    sh '''
 		    #!/bin/bash
                     config=$(jq '.prod.ip' docker-project/config.json | sed 's/"//g')
 		    ssh -i /tmp/id_rsa ec2-user@$config -o StrictHostKeyChecking=no << EOF
-		    cd /home/ec2-user 
+		    cd /home/ec2-user/jenkins-file-testing/docker-project 
 		    docker compose up -d
 		    exit 0
                     << EOF
