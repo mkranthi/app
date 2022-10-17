@@ -41,6 +41,7 @@ pipeline {
 		    #!/bin/bash
                     config=$(jq '.dev.ip' docker-project/config.json | sed 's/"//g')
 		    scp -i /tmp/id_rsa -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/docker-project/deploy-app/docker-project ec2-user@$config:/home/ec2-user
+		    '''
 		    sh '''
 		    #!/bin/bash
                     config=$(jq '.dev.ip' docker-project/config.json | sed 's/"//g')
