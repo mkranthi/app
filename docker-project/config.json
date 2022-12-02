@@ -1,7 +1,7 @@
 {
         "dev":{
                 "name": "development",
-                "ip": "172.31.27.173",
+                "ip": "172.31.21.230",
                 "fruit": "apple"
         },
         "test":{
